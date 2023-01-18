@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--从05开始了解使用，现在可以随便写-->
+<!--要想使用不写Dao实现类这种机制:namespace必须是dao接口的全限定名称。-->
+<!--要想使用不写Dao实现类这种机制: id必须是dao接口的方法名。-->
+<mapper namespace="car">
+
+    <!--insert语句，id是这条sql语句的唯一标识，这个id就代表了这条sql语句-->
+    <insert id="insertCar">
+        <!--insert into t.car(id, car_num, brand, guide_price,produce_time,car_type) values(null, #{k1}, #{k2}, #{k3}, #{k4} , #{k5});-->
+        insert into t_car(id,car_num,brand,guide_price,produce_time,car_type)
+        values (null, #{carNum}, #{brand}, #{guidePrice}, #{produceTime}, #{carType})
+    </insert>
+    <insert id="insertCarByPojo">
+        insert into t_car(id,car_num,brand,guide_price,produce_time,car_type)
+        values (null, #{carNum}, #{brand}, #{guidePrice}, #{produceTime}, #{carType})
+    </insert>
+
+    <!--删除-->
+    <delete id="deleteByCarNum">
+        delete from t_car where car_num = #{SuiBianXie}
+    </delete>
+
+    <!--更新-->
+    <update id="updateCarByPOJO">
+        update t_car set
+                         car_num = #{carNum}, brand = #{brand},
+                         guide_price = #{guidePrice}, produce_time = #{produceTime},
+                         car_type = #{carType}
+        where id = #{id}
+    </update>
+
+    <!--查询-->
+    <!--    <select id="selectCarById" resultType="com.powernode.pojo.Car">
+            select * from t_car where id = #{id}
+        </select>  -->
+    <select id="selectCarById" resultType="com.powernode.pojo.Car">
+        select
+            id, car_num as carNum, brand, guide_price as guidePrice, produce_time as produceTime, car_type as carType
+        from t_car where id = #{id}
+    </select>
+    <select id="selectCarAll" resultType="com.powernode.pojo.Car">
+        select
+            id, car_num as carNum, brand, guide_price as guidePrice, produce_time as produceTime, car_type as carType
+        from t_car
+    </select>
+</mapper>

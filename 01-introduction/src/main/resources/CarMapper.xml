@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--从05开始了解使用，现在可以随便写-->
+<!--要想使用不写Dao实现类这种机制:namespace必须是dao接口的全限定名称。-->
+<!--要想使用不写Dao实现类这种机制: id必须是dao接口的方法名。-->
+
+<mapper namespace="org.mybatis.example.BlogMapper">
+
+    <!--insert语句，id是这条sql语句的唯一标识，这个id就代表了这条sql语句-->
+    <insert id="insertCar">
+        insert into t_car(id,car_num,brand,guide_price,produce_time,car_type)
+        values (null,1003,"面包车",13.00,"2020-10-13","燃油车")
+    </insert>
+</mapper>
